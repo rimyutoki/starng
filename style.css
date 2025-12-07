@@ -39,8 +39,12 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     padding: 20px;
+    padding-bottom: 50px;
+    /* Added bottom spacing */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border-radius: 0;
+    position: relative;
+    /* For absolute positioning of version info */
 }
 
 /* On larger screens, make it look like a floating phone/card */
@@ -52,7 +56,10 @@ body {
 }
 
 .display-container {
-    flex: 1;
+    height: 35%;
+    /* Reduced height from flex: 1 */
+    flex: 0 0 auto;
+    /* Don't grow/shrink */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -162,4 +169,14 @@ body {
 
 .calculator-container {
     animation: fadeIn 0.5s ease-out;
+}
+
+.version-info {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    color: var(--history-color);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    pointer-events: none;
 }
