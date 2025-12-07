@@ -123,6 +123,8 @@ body {
     user-select: none;
     margin: 0 auto;
     /* Center in grid cell */
+    touch-action: manipulation;
+    /* Prevent double-tap zoom */
 }
 
 .btn:active {
