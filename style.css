@@ -1,0 +1,163 @@
+:root {
+    --bg-color: #121212;
+    --calculator-bg: #1e1e1e;
+    --display-color: #ffffff;
+    --history-color: #888888;
+    --btn-bg: #2d2d2d;
+    --btn-text: #ffffff;
+    --btn-operator-text: #ff9f0a;
+    --btn-action-text: #a5a5a5;
+    --btn-equals-bg: #ff9f0a;
+    --btn-equals-text: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* Prevent scrolling for app-like feel on mobile */
+}
+
+.calculator-container {
+    background-color: var(--calculator-bg);
+    width: 100%;
+    max-width: 400px;
+    /* Mobile width constraint on desktop */
+    height: 100vh;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+}
+
+/* On larger screens, make it look like a floating phone/card */
+@media (min-width: 450px) {
+    .calculator-container {
+        height: 90vh;
+        border-radius: 30px;
+    }
+}
+
+.display-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Start from top to prevent clipping when overflowing */
+    align-items: flex-end;
+    /* Default align right (for numbers) */
+    padding: 20px;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow-y: auto;
+    /* Enable scrolling for long text */
+}
+
+.history {
+    color: var(--history-color);
+    font-size: 1.5rem;
+    min-height: 2rem;
+    margin-bottom: 10px;
+    margin-top: auto;
+    /* Push content to bottom */
+    width: 100%;
+    text-align: right;
+}
+
+.current-operand {
+    color: var(--display-color);
+    font-size: 4rem;
+    font-weight: 300;
+    word-break: break-word;
+    white-space: pre-wrap;
+    /* Preserve newlines if any */
+    width: 100%;
+    text-align: right;
+    min-height: 2.6rem;
+}
+
+.current-operand.is-message {
+    text-align: left;
+    /* Left align for messages */
+    align-items: flex-start;
+    font-size: 3.5rem;
+    /* Larger font for visibility */
+    align-self: flex-start;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    appearance: none;
+    border: none;
+    outline: none;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    font-size: 1.75rem;
+    height: 75px;
+    width: 75px;
+    /* Fixed width for perfect circles */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.1s;
+    user-select: none;
+    margin: 0 auto;
+    /* Center in grid cell */
+}
+
+.btn:active {
+    filter: brightness(1.3);
+    transform: scale(0.95);
+}
+
+.btn-action {
+    color: var(--btn-action-text);
+    background-color: #3a3a3a;
+    /* Slightly lighter for top row */
+}
+
+.btn-operator {
+    display: none;
+    /* Hide any remaining operators just in case */
+}
+
+.btn-equals {
+    background-color: var(--btn-equals-bg);
+    color: var(--btn-equals-text);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator-container {
+    animation: fadeIn 0.5s ease-out;
+}

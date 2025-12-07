@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A premium Android-style calculator app">
+    <meta name="theme-color" content="#1e1e1e">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="calculator-container">
+        <div class="display-container">
+            <div class="history" id="history"></div>
+            <div class="current-operand" id="current-operand">0</div>
+        </div>
+        <div class="keypad">
+            <!-- Row 7 0 1 -->
+            <button class="btn btn-number" data-number="7">7</button>
+            <button class="btn btn-number" data-number="0">0</button>
+            <button class="btn btn-number" data-number="1">1</button>
+
+            <!-- Row 6 empty 2 -->
+            <button class="btn btn-number" data-number="6">6</button>
+            <div class="btn-spacer"></div>
+            <button class="btn btn-number" data-number="2">2</button>
+
+            <!-- Row 5 4 3 -->
+            <button class="btn btn-number" data-number="5">5</button>
+            <button class="btn btn-number" data-number="4">4</button>
+            <button class="btn btn-number" data-number="3">3</button>
+
+            <!-- Bottom: AC, Delete, Equals -->
+            <button class="btn btn-action" data-action="clear">AC</button>
+            <button class="btn btn-action" data-action="delete">⌫</button>
+            <button class="btn btn-equals" data-action="calculate">=</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
